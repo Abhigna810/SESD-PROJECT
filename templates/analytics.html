@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Analytics Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #101827;
+            font-family: Arial, sans-serif;
+            color: white;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #60a5fa;
+        }
+
+        .dashboard {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: white;
+            color: #222;
+            padding: 25px;
+            width: 200px;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .card h2 {
+            font-size: 35px;
+        }
+
+        .total { border-top: 6px solid #2563eb; }
+        .granted { border-top: 6px solid #16a34a; }
+        .denied { border-top: 6px solid #dc2626; }
+
+        .chart-box {
+            background: white;
+            color: #222;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .chart-box h2 {
+            text-align: center;
+            color: #174ea6;
+        }
+
+        .bar {
+            display: block;
+            width: 100%;
+            height: 25px;
+            border: 0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 12px 0 25px;
+            appearance: none;
+            background: #e5e7eb;
+        }
+
+        .bar::-webkit-progress-bar {
+            background: #e5e7eb;
+        }
+
+        .bar.green::-webkit-progress-value { background: #16a34a; }
+        .bar.red::-webkit-progress-value { background: #dc2626; }
+        .bar.blue::-webkit-progress-value { background: #2563eb; }
+        .bar.orange::-webkit-progress-value { background: #f59e0b; }
+        .bar.purple::-webkit-progress-value { background: #9333ea; }
+
+        .bar.green::-moz-progress-bar { background: #16a34a; }
+        .bar.red::-moz-progress-bar { background: #dc2626; }
+        .bar.blue::-moz-progress-bar { background: #2563eb; }
+        .bar.orange::-moz-progress-bar { background: #f59e0b; }
+        .bar.purple::-moz-progress-bar { background: #9333ea; }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #60a5fa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Access Analytics Dashboard</h1>
+
+    <div class="dashboard">
+
+        <div class="card total">
+            <h3>Total Requests</h3>
+            <h2>{{ total }}</h2>
+        </div>
+
+        <div class="card granted">
+            <h3>Access Granted</h3>
+            <h2>{{ granted }}</h2>
+        </div>
+
+        <div class="card denied">
+            <h3>Access Denied</h3>
+            <h2>{{ denied }}</h2>
+        </div>
+
+    </div>
+
+    <div class="chart-box">
+
+        <h2>Access Decision Analysis</h2>
+
+        <p><b>Access Granted: {{ granted }}</b></p>
+        <progress class="bar green"
+                  aria-label="Access granted percentage"
+                  value="{{ granted }}"
+                  max="{{ total if total > 0 else 1 }}"></progress>
+
+        <p><b>Access Denied: {{ denied }}</b></p>
+        <progress class="bar red"
+                  aria-label="Access denied percentage"
+                  value="{{ denied }}"
+                  max="{{ total if total > 0 else 1 }}"></progress>
+
+        <h2>Risk Score Analysis</h2>
+
+        <p><b>Low Risk (0–39): {{ low }}</b></p>
+        <progress class="bar blue"
+                  aria-label="Low risk percentage"
+                  value="{{ low }}"
+                  max="{{ total if total > 0 else 1 }}"></progress>
+
+        <p><b>Medium Risk (40–69): {{ medium }}</b></p>
+        <progress class="bar orange"
+                  aria-label="Medium risk percentage"
+                  value="{{ medium }}"
+                  max="{{ total if total > 0 else 1 }}"></progress>
+
+        <p><b>High Risk (70–100): {{ high }}</b></p>
+        <progress class="bar purple"
+                  aria-label="High risk percentage"
+                  value="{{ high }}"
+                  max="{{ total if total > 0 else 1 }}"></progress>
+
+    </div>
+
+    <a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>

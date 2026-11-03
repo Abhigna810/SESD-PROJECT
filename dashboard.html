@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureAccess Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #101827;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            color: white;
+        }
+
+        .container {
+            background: white;
+            color: #222;
+            max-width: 650px;
+            margin: 30px auto;
+            padding: 35px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: #174ea6;
+            text-align: center;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 25px;
+            background: #174ea6;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #103b80;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background: #e8f1ff;
+            border-radius: 8px;
+            color: #222;
+        }
+
+        .links {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .links a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 15px;
+            background: #e8f1ff;
+            color: #174ea6;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+
+        .links a:hover {
+            background: #cbdcf7;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>SecureAccess Dashboard</h1>
+
+    <h3>Explainable Access Control System</h3>
+
+    <form id="accessForm">
+
+        <label>Role</label>
+
+        <select name="role" required>
+            <option value="Admin">Admin</option>
+            <option value="Manager">Manager</option>
+            <option value="Employee">Employee</option>
+        </select>
+
+        <label>Resource</label>
+
+        <select name="resource" required>
+            <option value="Dashboard">Dashboard</option>
+            <option value="Reports">Reports</option>
+            <option value="User Data">User Data</option>
+        </select>
+
+        <label>Risk Score (0-100)</label>
+
+        <input
+            type="number"
+            name="risk"
+            min="0"
+            max="100"
+            required
+        >
+
+        <button type="submit">Check Access</button>
+
+    </form>
+
+    <div class="result" id="resultBox" style="display:none"><h2 id="resultText"></h2><p id="explanationText"></p></div>
+
+    <div class="links">
+
+        <a href="history.html">Access History</a>
+
+        <a href="analytics.html">Analytics</a>
+
+        <a href="users.html">User Management</a>
+
+        <a href="policy.html">Policy Management</a>
+
+        <a href="index.html">Logout</a>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
